@@ -34,6 +34,7 @@ dependencies {
     testImplementation("org.mockito:mockito-junit-jupiter:5.19.0")
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.13.4")
     testImplementation("org.junit.jupiter:junit-jupiter-params:5.13.4")
+    testImplementation("com.google.guava:guava-testlib:33.5.0-jre")
 
     // caching
     implementation("com.github.ben-manes.caffeine:caffeine:3.2.3")
