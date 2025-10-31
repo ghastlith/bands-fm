@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 
+import dentsu.bands.external.model.Album;
 import dentsu.bands.external.model.Band;
 import dentsu.bands.http.HttpRequestSender;
 import lombok.RequiredArgsConstructor;
@@ -22,10 +23,18 @@ public class ExternalApiService {
     private String externalApiBaseUrl;
 
     private static final String BANDS_ENDPOINT = "/bands";
+    private static final String ALBUMS_ENDPOINT = "/albums";
 
     public List<Band> getAllBands() {
         val url = externalApiBaseUrl + BANDS_ENDPOINT;
         List<Band> response = httpRequestSender.doGetRequest(url, new TypeReference<List<Band>>() {}.getType());
+
+        return response;
+    }
+
+    public List<Album> getAllAlbums() {
+        val url = externalApiBaseUrl + ALBUMS_ENDPOINT;
+        List<Album> response = httpRequestSender.doGetRequest(url, new TypeReference<List<Album>>() {}.getType());
 
         return response;
     }
