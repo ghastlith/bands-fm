@@ -5,6 +5,7 @@ import java.util.UUID;
 
 import org.springframework.stereotype.Service;
 
+import dentsu.bands.api.exception.NotFoundException;
 import dentsu.bands.external.ExternalApiCache;
 import dentsu.bands.external.model.Band;
 import lombok.RequiredArgsConstructor;
@@ -38,7 +39,7 @@ public class BandService {
             .stream()
             .filter(band -> band.id().equals(id))
             .findFirst()
-            .orElseThrow(() -> new RuntimeException(id.toString())); // TODO: create custom exception
+            .orElseThrow(() -> new NotFoundException(id.toString()));
     }
 
 }
