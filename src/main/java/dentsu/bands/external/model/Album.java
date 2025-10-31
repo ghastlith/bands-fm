@@ -4,6 +4,9 @@ import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.UUID;
 
+import lombok.Builder;
+
+@Builder
 public record Album (
     UUID id,
     String name,
