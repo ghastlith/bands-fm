@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import dentsu.bands.external.model.Band;
 import jakarta.annotation.Nullable;
 import lombok.RequiredArgsConstructor;
+import lombok.val;
 
 @Controller
 @RequestMapping("/bands")
@@ -24,9 +25,10 @@ public class BandController {
     @GetMapping
     @ResponseBody
     public List<Band> getAll(
-        @RequestParam(defaultValue = "unordered") String order,
+        @RequestParam(name = "order", defaultValue = "unordered") String orderParam,
         @Nullable @RequestParam("filter[name]") String filter
     ) {
+        val order = BandOrder.fromValue(orderParam);
         return bandService.getAll(order, filter);
     }
 

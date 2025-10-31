@@ -14,4 +14,14 @@ public enum BandOrder {
         this.value = value;
     }
 
+    public static BandOrder fromValue(final String value) {
+        for (BandOrder bandOrder : values()) {
+            if (bandOrder.value.equals(value)) {
+                return bandOrder;
+            }
+        }
+
+        return null;
+    }
+
 }

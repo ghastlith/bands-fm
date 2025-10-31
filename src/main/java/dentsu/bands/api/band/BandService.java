@@ -9,7 +9,6 @@ import dentsu.bands.api.exception.NotFoundException;
 import dentsu.bands.external.ExternalApiCache;
 import dentsu.bands.external.model.Band;
 import lombok.RequiredArgsConstructor;
-import lombok.val;
 
 @Service
 @RequiredArgsConstructor
@@ -17,19 +16,17 @@ public class BandService {
 
     private final ExternalApiCache externalApiCache;
 
-    public List<Band> getAll(final String orderParam, final String filter) {
-        val order = BandOrder.valueOf(orderParam);
-
+    public List<Band> getAll(final BandOrder order, final String filter) {
         return externalApiCache.getAllBands()
             .stream()
             .filter(band -> null == filter || band.name().contains(filter))
             .sorted((b1, b2) -> {
                 return switch (order) {
+                    case UNORDERED -> 0;
                     case NAME_ASCENDING -> b1.name().compareToIgnoreCase(b2.name());
                     case NAME_DESCENDING -> b2.name().compareToIgnoreCase(b1.name());
                     case POPULARITY_ASCENDING -> Integer.compare(b1.numPlays(), b2.numPlays());
                     case POPULARITY_DESCENDING -> Integer.compare(b2.numPlays(), b1.numPlays());
-                    default -> 0;
                 };
             }).toList();
     }
