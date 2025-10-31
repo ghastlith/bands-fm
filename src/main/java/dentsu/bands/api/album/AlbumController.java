@@ -16,7 +16,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.val;
 
 @Controller
-@RequestMapping("/bands")
+@RequestMapping("/albums")
 @RequiredArgsConstructor
 public class AlbumController {
 
